@@ -6,6 +6,6 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://proyektoz.github.io',
-  base: 'https://proyektoz.github.io/tierracoll/',
+  base: 'izaje',
   integrations: [icon()]
 });
