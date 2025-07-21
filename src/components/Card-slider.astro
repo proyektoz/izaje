@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+import Image1 from "../assets/img/card-slider/img1.png";
+import Image2 from "../assets/img/card-slider/img2.png";
+import Image3 from "../assets/img/card-slider/img3.png";
+import Image4 from "../assets/img/card-slider/img4.png";
+---
+
+<div class="carrusel">
+    <div class="slider-card">
+        <Image class="image" src={Image1} alt="Imagen 1"/>
+    </div>
+
+    <div class="slider-card">
+        <Image class="image" src={Image2} alt="Imagen 1" />
+    </div>
+
+    <div class="slider-card">
+        <Image class="image" src={Image3} alt="Imagen 1" />
+    </div>
+
+    <div class="slider-card">
+        <Image class="image" src={Image4} alt="Imagen 1" />
+    </div>
+</div>
+
+<style lang="scss">
+    .carrusel {
+        display: grid;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        .slider-card {
+            .image {
+                width: 100%;
+                height: 100px;
+                object-fit: cover;
+            }
+
+        }
+    }
+</style>
