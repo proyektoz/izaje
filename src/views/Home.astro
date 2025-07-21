@@ -1,8 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import menu from "../assets/icons/menu.svg";
-import { Image } from "astro:assets";
-import Image1 from "../assets/img/img1.jpg";
 import CardSlider from "../components/Card-slider.astro";
 ---
 
@@ -25,27 +22,34 @@ import CardSlider from "../components/Card-slider.astro";
                 <li><a href="#">Inicio</a></li>
                 <li><a href="#">Sobre nosotros</a></li>
                 <li><a href="#">Nuestro trabajo</a></li>
-                <li><a href="">Servicios</a></li>
-                <li class="contact"><a href="">Contactenos</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contactenos</a></li>
             </ul>
         </nav>
     </header>
 
-    <CardSlider></CardSlider>
+    <div class="hero">
+        <div class="slider-imagesh">
+            <CardSlider/>
+        </div>
+        <div class="banner">
+            <div class="slider-images">hola</div>
+            <div class="card-info">
+                <h1>
+                    <span>Soluciones</span> en izajes y carga especializada que hacen
+                    la diferencia
+                </h1>
+                <p>
+                    Transformamos tu visión en resultados concretos, con
+                    servicios de izaje y manejo de cargas que combinan
+                    experiencia, tecnología y seguridad. Cada proyecto es un
+                    compromiso, y lo llevamos a cabo con precisión y
+                    profesionalismo.
+                </p>
 
-    <div class="card">
-        <h1>
-            <span>Soluciones</span> en izajes y carga especializada que hacen la
-            diferencia
-        </h1>
-        <p>
-            Transformamos tu visión en resultados concretos, con servicios de
-            izaje y manejo de cargas que combinan experiencia, tecnología y
-            seguridad. Cada proyecto es un compromiso, y lo llevamos a cabo con
-            precisión y profesionalismo.
-        </p>
-
-        <button class="get-start">Contactos</button>
+                <button class="get-start">Contactos</button>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -56,53 +60,70 @@ import CardSlider from "../components/Card-slider.astro";
         --color-success: #4bb347;
         --color-name-company: #0f73b9;
     }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    $heigth-header: 70px;
+    $padding-container: 0px 20px;
+    $heigth-slider-images: 50px;
+
     .main-wrapper {
         background-image: url("../assets/img/img2.jpg");
         height: 100vh;
+        width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
         position: relative;
         color: #ffffff;
         font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
 
         .header {
+            padding: $padding-container;
+            height: $heigth-header;
+            width: 100%;
+            // background-color: red;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 10px;
-            position: relative;
-        }
+            flex-wrap: wrap;
 
-        .header .logo {
-            width: 30%;
-        }
+            nav {
+                position: relative;
+                ul {
+                    margin: 0px;
+                    padding: 0px;
+                    list-style: none;
+                    display: flex;
+                    // gap: 20px;
+                    flex-direction: column;
+                    background-color: #000000;
 
-        .header ul {
-            margin: 0px;
-            padding: 0px;
-            position: absolute;
-            background-color: #000000;
-            right: 0px;
-            margin-right: 20px;
+                    position: absolute;
+                    right: 0px;
+                    z-index: 2;
 
-            .contact {
-                display: none;
-            }
-        }
+                    li {
+                        padding: 20px 20px;
+                        text-transform: uppercase;
+                        font-weight: bold;
+                        width: 220px;
 
-        .header ul li {
-            list-style: none;
-            padding: 15px 20px;
-            text-transform: uppercase;
-            font-weight: bold;
+                        &:last-child {
+                            display: none;
+                        }
+                    }
 
-            a {
-                text-decoration: none;
-                color: #ffffff;
-
-                &:hover {
-                    color: darkorange;
-                    cursor: pointer;
+                    li a {
+                        color: #ffffff;
+                        text-decoration: none;
+                        &:hover {
+                            color: darkorange;
+                            cursor: pointer;
+                        }
+                    }
                 }
             }
         }
@@ -120,121 +141,73 @@ import CardSlider from "../components/Card-slider.astro";
             color: orange;
         }
 
-        .card {
-            border: 2px solid rgba(255, 255, 255, 0.16);
-            width: 70%;
-            margin: 10px auto;
-            padding: 30px 30px;
-            background-color: rgb(0, 0, 0, 0.6);
-            font-family: sans-serif;
-            text-transform: uppercase;
-            font-size: 18px;
+        .hero {
+            height: calc(100vh - $heigth-header);
+            width: 100%;
+            padding: $padding-container;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
 
-            h1 {
-                padding: 0px;
-                margin: 0px;
-            }
+            .banner {
+                height: calc(100% - 100px - $heigth-slider-images);
+                width: 100%;
+                background-color: blue;
+                display: grid;
+                grid-template-columns: repeat(1, 1fr);
+                grid-template-rows: 1fr;
+                grid-column-gap: 0px;
+                grid-row-gap: 0px;
+                z-index: 1;
 
-            span {
-                color: var(--color-primary);
-            }
+                .slider-images {
+                    display: none;
+                }
 
-            p {
-                font-size: 17px;
-                text-transform: none;
-                text-align: justify;
-                line-height: 1.3;
-            }
+                .card-info {
+                    border: 2px solid rgba(255, 255, 255, 0.16);
+                    width: 100%;
+                    padding: 30px 30px;
+                    background-color: rgb(0, 0, 0, 0.6);
+                    font-family: sans-serif;
+                    text-transform: uppercase;
+                    font-size: 18px;
 
-            .get-start {
-                font-family: "Roboto", sans-serif;
-                color: #ffffff;
-                font-weight: bold;
-                line-height: 130%;
-                letter-spacing: 1px;
-                border: none;
-                background-color: var(--color-secundary);
-                border-radius: 60px;
-                padding: 10px 15px;
-                cursor: pointer;
+                    h1 {
+                        padding: 0px;
+                        margin: 0px;
+                    }
+
+                    span {
+                        color: var(--color-primary);
+                    }
+
+                    p {
+                        font-size: 17px;
+                        text-transform: none;
+                        text-align: justify;
+                        line-height: 1.3;
+                    }
+
+                    .get-start {
+                        font-family: "Roboto", sans-serif;
+                        color: #ffffff;
+                        font-weight: bold;
+                        line-height: 130%;
+                        letter-spacing: 1px;
+                        border: none;
+                        background-color: var(--color-secundary);
+                        border-radius: 60px;
+                        padding: 10px 15px;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
 
     .display-none {
-        display: none;
-    }
-
-    @media (min-width: 600px) {
-        .main-wrapper {
-            .header {
-                padding: 20px 10%;
-                background-color: rgb(0, 0, 0, 0.6);
-            }
-            .header .icon-menu {
-                display: none;
-            }
-
-            .header ul {
-                position: relative;
-                background-color: transparent;
-                display: flex;
-                justify-content: end;
-                align-items: center;
-                text-align: center;
-                font-size: 12px;
-                margin-right: 0px;
-
-                &::before {
-                    display: none;
-                }
-            }
-        }
-
-        .display-none {
-            display: block;
-        }
-    }
-
-    @media (min-width: 950px) {
-        .main-wrapper {
-            .header ul {
-                font-size: 14px;
-            }
-
-            .card {
-                width: 50%;
-                margin-right: 10%;
-                padding: 50px 50px;
-            }
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .main-wrapper {
-            .header ul {
-                font-size: 16px;
-                .contact {
-                    display: block;
-                }
-            }
-
-            .card {
-                width: 500px;
-                margin: 0px;
-                position: absolute;
-                bottom: 10vh;
-                right: 10%;
-
-                h1 {
-                    font-size: 30px;
-                }
-
-                p {
-                    font-size: 18px;
-                    line-height: 1.5;
-                }
-            }
-        }
+        display: none !important;
     }
 </style>
