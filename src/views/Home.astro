@@ -29,11 +29,11 @@ import CardSlider from "../components/Card-slider.astro";
     </header>
 
     <div class="hero">
-        <div class="slider-imagesh">
-            <CardSlider/>
+        <div class="banner-slider-images">
+            <CardSlider />
         </div>
         <div class="banner">
-            <div class="slider-images">hola</div>
+            <div class="slider-images"><CardSlider /></div>
             <div class="card-info">
                 <h1>
                     <span>Soluciones</span> en izajes y carga especializada que hacen
@@ -84,7 +84,6 @@ import CardSlider from "../components/Card-slider.astro";
             padding: $padding-container;
             height: $heigth-header;
             width: 100%;
-            // background-color: red;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -144,7 +143,7 @@ import CardSlider from "../components/Card-slider.astro";
         .hero {
             height: calc(100vh - $heigth-header);
             width: 100%;
-            
+
             display: flex;
             align-items: center;
             flex-direction: column;
@@ -209,5 +208,97 @@ import CardSlider from "../components/Card-slider.astro";
 
     .display-none {
         display: none !important;
+    }
+
+    @media (min-width: 700px) {
+        .header .icon-menu {
+            display: none;
+        }
+
+        .main-wrapper {
+            .header {
+                nav {
+                    ul {
+                        margin: 0px;
+                        padding: 0px;
+                        list-style: none;
+                        display: flex;
+                        gap: 2px;
+                        flex-direction: row;
+                        background-color: transparent;
+                        font-size: 12px;
+
+                        position: relative;
+                        text-align: center;
+
+                        li {
+                            padding: 10px 5px;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                            width: 130px;
+
+                            &:last-child {
+                                display: none;
+                            }
+                        }
+
+                        li a {
+                            color: #ffffff;
+                            text-decoration: none;
+                            &:hover {
+                                color: darkorange;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .header ul::before {
+                content: "";
+                display: none;
+            }
+        }
+
+        .display-none {
+            display: flex !important;
+        }
+    }
+
+    @media (min-width: 950px) {
+        .main-wrapper {
+            .header {
+                nav {
+                    ul {
+                        li {
+                            &:last-child {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .hero {
+                .banner-slider-images {
+                    display: none;
+                }
+
+                .banner {
+                    grid-template-columns: 1.5fr 1fr;
+                    direction: rtl;
+                    .card-info {
+                        h1 {
+                            text-align: end;
+                        }
+                    }
+
+                    .slider-images {
+                        display: block;
+                        
+                    }
+                }
+            }
+        }
     }
 </style>

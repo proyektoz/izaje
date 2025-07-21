@@ -4,6 +4,8 @@ import Image1 from "../assets/img/card-slider/img1.png";
 import Image2 from "../assets/img/card-slider/img2.png";
 import Image3 from "../assets/img/card-slider/img3.png";
 import Image4 from "../assets/img/card-slider/img4.png";
+import Image5 from "../assets/img/card-slider/img5.png";
+import Image6 from "../assets/img/card-slider/img6.png";
 ---
 
 <div class="carrusel">
@@ -21,6 +23,14 @@ import Image4 from "../assets/img/card-slider/img4.png";
 
     <div class="slider-card">
         <Image class="image" src={Image4} alt="Imagen 1" />
+    </div>
+
+    <div class="slider-card">
+        <Image class="image" src={Image5} alt="Imagen 1" />
+    </div>
+
+    <div class="slider-card">
+        <Image class="image" src={Image6} alt="Imagen 1" />
     </div>
 </div>
 
@@ -46,6 +56,42 @@ import Image4 from "../assets/img/card-slider/img4.png";
                 object-fit: cover;
             }
         }
+
+        .slider-card:nth-last-child(-n + 2) {
+            display: none;
+        }
     }
- 
+
+    @media (min-width: 700px) {
+        .carrusel {
+            grid-template-columns: repeat(6, 1fr);
+
+            .slider-card:nth-last-child(-n + 2) {
+                display: block;
+            }
+        }
+    }
+
+    @media (min-width: 950px) {
+        $width-image: 200px;
+        .carrusel {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-column-gap: 10px;
+            grid-row-gap: 10px;
+
+            .slider-card {
+                height: $width-image;
+                border-radius: 5px;
+                 width: $width-image;
+
+               
+                .image {
+                    height: $width-image;
+                    width: $width-image;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
 </style>
