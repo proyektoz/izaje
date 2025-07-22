@@ -4,6 +4,7 @@ import CardSlider from "../components/Card-slider.astro";
 import Image from "astro/components/Image.astro";
 
 import Logo from "../assets/img/logo/logo.svg"
+import NameComapny from "../assets/img/logo/razon-social.svg"
 ---
 
 <script>
@@ -20,6 +21,10 @@ import Logo from "../assets/img/logo/logo.svg"
     <header class="header">
         <div class="logo">
             <Image src={Logo} alt="Logo" width={50}></Image>
+        </div>
+
+        <div>
+            <Image src={NameComapny} alt="Logo" width={200}></Image>
         </div>
         <nav>
             <Icon id="icon-menu" class="icon-menu" name="mdi:menu" />
