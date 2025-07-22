@@ -1,6 +1,9 @@
 ---
 import { Icon } from "astro-icon/components";
 import CardSlider from "../components/Card-slider.astro";
+import Image from "astro/components/Image.astro";
+
+import Logo from "../assets/img/logo/logo.png"
 ---
 
 <script>
@@ -15,7 +18,9 @@ import CardSlider from "../components/Card-slider.astro";
 
 <section class="main-wrapper">
     <header class="header">
-        <div class="logo">Logo</div>
+        <div class="logo">
+            <Image src={Logo} alt="Logo" width={65}></Image>
+        </div>
         <nav>
             <Icon id="icon-menu" class="icon-menu" name="mdi:menu" />
             <ul class="display-none">
@@ -289,7 +294,11 @@ import CardSlider from "../components/Card-slider.astro";
                     direction: rtl;
                     .card-info {
                         h1 {
-                            text-align: end;
+                            direction: ltr;
+                        }
+
+                        p {
+                            direction: ltr;
                         }
                     }
 
