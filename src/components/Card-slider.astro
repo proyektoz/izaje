@@ -1,59 +1,78 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 import Image1 from "../assets/img/card-slider/img1.png";
 import Image2 from "../assets/img/card-slider/img2.png";
 import Image3 from "../assets/img/card-slider/img3.png";
 import Image4 from "../assets/img/card-slider/img4.png";
 import Image5 from "../assets/img/card-slider/img5.png";
 import Image6 from "../assets/img/card-slider/img6.png";
+
+const images = [Image1, Image2, Image3, Image4, Image5, Image6];
 ---
 
 <div class="carrusel">
-    <div class="slider-card">
-        <Image class="image" src={Image1} alt="Imagen 1" />
-    </div>
+    {images.map((image, index) => (
+        <div class="slider-card" data-index={index}>
+            <Image 
+                class="image carousel-item" 
+                src={image} 
+                alt={`Imagen ${index + 1}`} 
+                width={200}
+                height={200}
+                loading="lazy"
+                data-src={image.src}
+                tabindex="0"
+            />
+        </div>
+    ))}
+</div>
 
-    <div class="slider-card">
-        <Image class="image" src={Image2} alt="Imagen 1" />
-    </div>
-
-    <div class="slider-card">
-        <Image class="image" src={Image3} alt="Imagen 1" />
-    </div>
-
-    <div class="slider-card">
-        <Image class="image" src={Image4} alt="Imagen 1" />
-    </div>
-
-    <div class="slider-card">
-        <Image class="image" src={Image5} alt="Imagen 1" />
-    </div>
-
-    <div class="slider-card">
-        <Image class="image" src={Image6} alt="Imagen 1" />
+<!-- Modal definido en el HTML -->
+<div id="image-modal" class="slider-modal">
+    <span class="modal-close"> <Icon name="mdi:window-close" /></span>
+    <img class="modal-image" src="" alt="Imagen ampliada">
+    <div class="modal-nav">
+        <button class="nav-btn prev-btn">
+            <Icon name="mdi:chevron-left" />
+        </button>
+        <button class="nav-btn next-btn">
+            <Icon name="mdi:chevron-right" />
+        </button>
     </div>
 </div>
 
 <style lang="scss">
+    /* Estilos existentes del carrusel */
     .carrusel {
-        display: grid;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
+        
         .slider-card {
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-right: 0px;
             height: 100px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+
+            &:hover {
+                transform: scale(1.03);
+                z-index: 2;
+            }
 
             &:last-child {
                 border: 1px solid rgba(255, 255, 255, 0.5);
             }
+
             .image {
                 width: 100%;
                 height: 100px;
                 object-fit: cover;
+                transition: transform 0.5s ease;
             }
         }
 
@@ -83,9 +102,8 @@ import Image6 from "../assets/img/card-slider/img6.png";
             .slider-card {
                 height: $width-image;
                 border-radius: 5px;
-                 width: $width-image;
+                width: $width-image;
 
-               
                 .image {
                     height: $width-image;
                     width: $width-image;
@@ -94,4 +112,166 @@ import Image6 from "../assets/img/card-slider/img6.png";
             }
         }
     }
+
+    /* Estilos del modal */
+    .slider-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        
+        &.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .modal-image {
+        max-width: 90%;
+        max-height: 90%;
+        transform: scale(0.8);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+        .active & {
+            transform: scale(1);
+        }
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 2;
+        
+        &:hover {
+            color: #f3d421;
+        }
+    }
+
+    .modal-nav {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .nav-btn {
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        font-size: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        z-index: 2;
+        
+        &:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+    }
 </style>
+
+<script>
+    // Definición de tipos
+    type HTMLElementWithSrc = HTMLElement & { src: string };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Elementos del DOM con tipos
+        const modal: HTMLElement | null = document.getElementById('image-modal');
+        const modalImg: HTMLImageElement | null = modal?.querySelector('.modal-image') || null;
+        const closeBtn: HTMLElement | null = modal?.querySelector('.modal-close') || null;
+        const prevBtn: HTMLButtonElement | null = modal?.querySelector('.prev-btn') || null;
+        const nextBtn: HTMLButtonElement | null = modal?.querySelector('.next-btn') || null;
+        const images: NodeListOf<HTMLElementWithSrc> = document.querySelectorAll('.carousel-item');
+        
+        let currentIndex: number = 0;
+        
+        // Función para abrir el modal
+        const openModal = (index: number): void => {
+            if (!modal || !modalImg) return;
+            
+            currentIndex = index;
+            const targetImage = images[index];
+            
+            if (targetImage && modalImg) {
+                modalImg.src = targetImage.getAttribute('data-src') || '';
+                modalImg.alt = targetImage.alt || 'Imagen ampliada';
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+        
+        // Función para cerrar el modal
+        const closeModal = (): void => {
+            if (!modal) return;
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+        
+        // Navegación entre imágenes
+        const navigate = (direction: number): void => {
+            if (!modalImg) return;
+            
+            currentIndex = (currentIndex + direction + images.length) % images.length;
+            const targetImage = images[currentIndex];
+            
+            if (targetImage) {
+                modalImg.src = targetImage.getAttribute('data-src') || '';
+                modalImg.alt = targetImage.alt || 'Imagen ampliada';
+            }
+        };
+        
+        // Event listeners con verificación de null
+        images.forEach((img: HTMLElementWithSrc, index: number) => {
+            img.addEventListener('click', () => openModal(index));
+            img.addEventListener('keydown', (e: KeyboardEvent) => {
+                if (e.key === 'Enter') openModal(index);
+            });
+        });
+        
+        closeBtn?.addEventListener('click', closeModal);
+        modal?.addEventListener('click', (e: MouseEvent) => {
+            if (e.target === modal) closeModal();
+        });
+        
+        prevBtn?.addEventListener('click', (e: MouseEvent) => {
+            e.stopPropagation();
+            navigate(-1);
+        });
+        
+        nextBtn?.addEventListener('click', (e: MouseEvent) => {
+            e.stopPropagation();
+            navigate(1);
+        });
+        
+        // Cerrar con ESC
+        document.addEventListener('keydown', (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && modal?.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    });
+</script>
