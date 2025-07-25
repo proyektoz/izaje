@@ -1,0 +1,148 @@
+---
+import Image from "astro/components/Image.astro";
+import Image1 from "../assets/img/icons-section-1/imag1.jpeg";
+import Image2 from "../assets/img/icons-section-1/img11.jpeg";
+import Image3 from "../assets/img/icons-section-1/img31.jpeg";
+import Image4 from "../assets/img/icons-section-1/montacargas/img1.jpeg";
+import Image5 from "../assets/img/icons-section-1/elevador/img1.jpeg";
+---
+
+<section id="quienes-somos" class="section">
+    <div class="container">
+        <div>
+            <h2>¿Quiénes somos?</h2>
+            <p class="parrafo">
+                Somos una empresa familiar, cuyo origen se fundamenta en la
+                experiencia de más de 40 años por parte de nuestros fundadores
+                en la industria, gracias a esto, desde el 24 de marzo del 2010
+                préstamos nuestros servicios en transporte e izajes.
+            </p>
+        </div>
+
+        <div>
+            <h2>¿Qué hacemos?</h2>
+            <ul class="lista">
+                <li class="item">
+                    <Image src={Image1} alt="Imagen 1" />
+                    <span
+                        >Movilización de taladros del sector hidrocarburos.</span
+                    >
+                </li>
+
+                <li class="item">
+                    <Image src={Image2} alt="Imagen 1" />
+                    <span
+                        >Logística de señalización vial, con aseguramiento de
+                        personal de la comunidad.</span
+                    >
+                </li>
+
+                <li class="item">
+                    <Image src={Image3} alt="Imagen 1" />
+                    <span>Movilización de cargas en cama baja y cama alta.</span
+                    >
+                </li>
+
+                <li class="item">
+                    <Image src={Image4} alt="Imagen 1" />
+                    <span
+                        >Levantamiento de carga paletizada (Montacargas,
+                        Cargadores).</span
+                    >
+                </li>
+
+                <li class="item">
+                    <Image src={Image5} alt="Imagen 1" />
+                    <span
+                        >Levantamiento en plataforma de trabajo elevadora móvil
+                        (Manlift).</span
+                    >
+                </li>
+
+                <!-- <li class="item">Alquiler de maquinaria pesada</li>
+
+                <li class="item">
+                    Levantamiento de vigas (concreto), pontones de más de 60
+                    toneladas.
+                </li>
+
+                <li class="item">
+                    Acompañamiento vial y escolta para cargas extra
+                    dimensionadas.
+                </li>
+
+                <li class="item">Servicio técnico vial.</li>
+
+                <li class="item">
+                    Movimiento de carga líquida (agua para riego)
+                </li> -->
+            </ul>
+
+            <!-- <div class="btn-show">
+                <button class="show-info">Ver más</button>
+            </div> -->
+        </div>
+    </div>
+</section>
+
+<style lang="scss">
+    :root {
+        --color-primary: #f3d421;
+        --color-secundary: #e1251b;
+        --color-success: #4bb347;
+        --color-name-company: #0f73b9;
+    }
+    $padding-container: 20px 20px;
+    .section {
+        font-family: sans-serif;
+        color: #ffffff;
+        background-color: #000000;
+
+        .container {
+            padding: $padding-container;
+
+            h2 {
+                color: var(--color-primary);
+            }
+
+            .parrafo {
+                text-align: justify;
+                line-height: 25px;
+            }
+
+            .lista {
+                list-style: none;
+                .item {
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    line-height: 25px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    span {
+                        font-size: 20px;
+                        text-align: center;
+                        display: block;
+                        font-weight: bold;
+                    }
+                    img {
+                        border-radius: 50%;
+                        height: 200px;
+                        width: 200px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .btn-show {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                .show-info {
+                    padding: 10px 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+</style>
