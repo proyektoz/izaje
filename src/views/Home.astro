@@ -5,6 +5,7 @@ import Image from "astro/components/Image.astro";
 
 import Logo from "../assets/img/logo/logo.svg";
 import NameComapny from "../assets/img/logo/razon-social.svg";
+import MisionVision from "../sections/MisionVision.astro";
 ---
 
 <script>
@@ -63,6 +64,8 @@ import NameComapny from "../assets/img/logo/razon-social.svg";
         </div>
     </div>
 </section>
+
+<MisionVision></MisionVision>
 
 <style lang="scss">
     :root {
@@ -311,11 +314,13 @@ import NameComapny from "../assets/img/logo/razon-social.svg";
             }
 
             .hero {
+                flex-direction: row;
                 .banner-slider-images {
                     display: none;
                 }
 
                 .banner {
+                    height: auto;
                     grid-template-columns: 1.5fr 1fr;
                     direction: rtl;
                     .card-info {

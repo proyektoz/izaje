@@ -204,7 +204,7 @@ const images = [Image1, Image2, Image3, Image4, Image5, Image6];
         const closeBtn: HTMLElement | null = modal?.querySelector('.modal-close') || null;
         const prevBtn: HTMLButtonElement | null = modal?.querySelector('.prev-btn') || null;
         const nextBtn: HTMLButtonElement | null = modal?.querySelector('.next-btn') || null;
-        const images: NodeListOf<HTMLElementWithSrc> = document.querySelectorAll('.carousel-item');
+        const images: NodeListOf<HTMLImageElement> = document.querySelectorAll('.carousel-item');
         
         let currentIndex: number = 0;
         
