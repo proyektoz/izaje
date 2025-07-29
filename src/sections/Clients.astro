@@ -1,0 +1,45 @@
+---
+import Image from "astro/components/Image.astro";
+import Client1 from "../assets/img/clients/constructora-colpatria.png"
+import Client2 from "../assets/img/clients/logo-ismocol.png"
+---
+
+<section class="section">
+    <div class="container">
+        <h2>Clientes Nacionales</h2>
+
+        <ul>
+            <li>
+                <Image src={Client1} alt="Cliente 1" width={200}></Image>
+            </li>
+             <li>
+                <Image src={Client2} alt="Cliente 1" width={200}></Image>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<style lang="scss">
+    :root {
+        --color-primary: #f3d421;
+        --color-secundary: #e1251b;
+        --color-success: #4bb347;
+        --color-name-company: #0f73b9;
+    }
+
+    $padding-container: 20px 20px;
+
+    .section {
+        font-family: sans-serif;
+        color: #ffffff;
+        background-color: #FFFFFF;
+
+        .container {
+            padding: $padding-container;
+
+            h2 {
+                color: var(--color-primary);
+            }
+        }
+    }
+</style>
