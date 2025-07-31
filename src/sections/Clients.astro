@@ -10,7 +10,7 @@ import Client7 from "../assets/img/clients/weatherford.png";
 import c1 from "../assets/img/certificados/ccs.png";
 import c2 from "../assets/img/certificados/certi1.svg";
 import c3 from "../assets/img/certificados/certi2.svg";
-import c4 from "../assets/img/certificados/certi3.svg";
+import c4 from "../assets/img/certificados/iso14001.svg";
 import ola2 from "../assets/img/img-section-2/ola2.svg";
 ---
 
@@ -18,7 +18,7 @@ import ola2 from "../assets/img/img-section-2/ola2.svg";
     <!-- <Image src={ola2} alt="Cliente 1" width={200} style="width: 100%; height: auto;"></Image> -->
     <div class="container">
         <div class="clients">
-            <h2>Clientes Nacionales</h2>
+            <h2>CLIENTES NACIONALES</h2>
             <ul>
                 <li>
                     <Image src={Client1} alt="Cliente 1" width={200} />
@@ -41,23 +41,11 @@ import ola2 from "../assets/img/img-section-2/ola2.svg";
                 <li>
                     <Image src={Client7} alt="Cliente 1" width={200} />
                 </li>
-                <!-- <li style="background-color: #FFFFFF;">
-                <Image src={c1} alt="Cliente 1" width={200}></Image>
-            </li>
-            <li style="background-color: #FFFFFF;">
-                <Image src={c2} alt="Cliente 1" width={200}></Image>
-            </li>
-            <li style="background-color: #FFFFFF;">
-                <Image src={c3} alt="Cliente 1" width={200}></Image>
-            </li>
-            <li style="background-color: #FFFFFF;">
-                <Image src={c4} alt="Cliente 1" width={200}></Image>
-            </li> -->
             </ul>
         </div>
 
         <div class="certifications">
-            <h2>Nuestras certificaciones</h2>
+            <h2>NUESTRAS CERTIFICACIONES</h2>
             <ul>
                 <li>
                     <Image src={c1} alt="Cliente 1" width={200} />
@@ -88,20 +76,31 @@ import ola2 from "../assets/img/img-section-2/ola2.svg";
 
     .section {
         font-family: sans-serif;
-        color: #ffffff;
+        color: #000000;
         background-color: #FFFFFF;
 
         .container {
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
-            padding: $padding-container;
+            // padding: $padding-container;
 
             h2 {
-                color: var(--color-primary);
+                color: #c5ac1b;
+                font-weight: 700;
+                font-size: 20px;
+                text-align: center;
+                margin: 0px;
+                padding: 30px;
+                margin-bottom: 30px;
+                margin-top: 0px;
+                // background-color: #000000;
+
             }
 
             ul {
+                margin: 0px;
+                padding: 0px;
                 list-style: none;
                 display: grid;
                 gap: 30px 40px;
@@ -111,6 +110,14 @@ import ola2 from "../assets/img/img-section-2/ola2.svg";
                     align-items: center;
                     justify-content: center;
                 }
+            }
+        }
+    }
+
+    @media (min-width: 700px) {
+        .section {
+            .container {
+                grid-template-columns: 1fr 1fr;
             }
         }
     }

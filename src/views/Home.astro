@@ -23,7 +23,7 @@ import Clients from "../sections/Clients.astro";
     <header class="header">
         <div class="logo">
             <Image src={Logo} alt="Logo" width={50} />
-            <Image class="img-web" src={NameComapny} alt="Logo"/>
+            <Image class="img-web" src={NameComapny} alt="Logo" />
         </div>
 
         <div class="img-movil">
@@ -66,8 +66,9 @@ import Clients from "../sections/Clients.astro";
     </div>
 </section>
 
-<MisionVision></MisionVision>
-<Clients></Clients>
+<MisionVision />
+<div class="divider"></div>
+<Clients />
 
 <style lang="scss">
     :root {
@@ -85,6 +86,11 @@ import Clients from "../sections/Clients.astro";
     $padding-container: 0px 20px;
     $heigth-slider-images: 50px;
 
+    .divider {
+        height: 30px;
+        width: 100%;
+    }
+
     .main-wrapper {
         background-image: url("../assets/img/img2.jpg");
         height: 100vh;
@@ -94,7 +100,7 @@ import Clients from "../sections/Clients.astro";
         position: relative;
         color: #ffffff;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
+        font-size: 18px;        
 
         .header {
             padding: $padding-container;
