@@ -1,0 +1,150 @@
+---
+import { Icon } from "astro-icon/components";
+
+const horario = [
+    {
+        dia: "Lunes",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Martes",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Miércoles",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Jueves",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Viernes",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Sábado",
+        horario: "07:00 AM - 06:00 PM"
+    },
+    {
+        dia: "Domingo",
+        horario: "Cerrado"
+    }
+]
+---
+
+<footer>
+    <section class="section-1">
+        <h3>GRÚAS INDUSTRIALES</h3>
+
+        <ul>
+            <li>Grúa Telescópica</li>
+            <li>Camión brazo articulado</li>
+            <li>Camión brazo Telescópico</li>
+            <li>Camión grúa brazo articulado</li>
+            <li>Tracto camión</li>
+        </ul>
+    </section>
+    <section class="section-2">
+        <h3>COTACTO</h3>
+
+        <ul>
+            <li>
+                <Icon name="mdi:map-marker" />
+                <span>Carrera 12 #2-80 Tauramena- Casanare</span>
+                <span>Colombia</span>
+            </li>
+            <li>
+                <Icon name="mdi:phone" />
+                <span>1212135455</span>
+            </li>
+            <li>
+                <Icon name="mdi:email" />
+                <span>ofertacomercialtierracoll@gmail.com</span>
+            </li>
+        </ul>
+    </section>
+    <section class="section-3">
+        <h3>HORARIOS DEATENCIÓN</h3>
+        
+        <p>Atención pro correo electrónico las 24 horas del día. Y en nuestras oficinas en los siguientes horrios</p>
+
+        <ul>
+            {
+                horario.map(({dia, horario}) => (
+                    <li>
+                        <span>{dia}</span>
+                        <span>{horario}</span>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+</footer>
+
+
+<style lang="scss">
+    :root {
+        --color-primary: #f3d421;
+        --color-secundary: #e1251b;
+        --color-success: #4bb347;
+        --color-name-company: #0f73b9;
+    }
+
+    $padding-container: 20px 20px;
+
+    footer {
+        font-family: sans-serif;
+        padding: $padding-container;
+        background-color: #000000;
+        color: #FFFFFF;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        ul {
+            list-style: none;
+        }
+
+        h3 {
+            color: var(--color-primary);
+        }
+
+        .section-1 {
+            ul li {
+                padding: 5px 0px;
+            }
+        }
+
+        .section-2 {
+            ul li {
+                padding: 20px 0px;
+            }
+        }
+
+        .section-3 {
+            p {
+                line-height: 25px;
+            }
+            ul li {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 0px;
+                border-bottom: 1px solid rgba( #6f6e6e, .5);
+                font-size: 14px;
+            }
+        }
+    }
+
+    @media (min-width: 700px) {
+        footer {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    @media (min-width: 870px) {
+        footer {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+</style>
