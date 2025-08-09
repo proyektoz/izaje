@@ -36,7 +36,7 @@ const listItems = [
                     listItems.map(({ item, icon }) => {
                         return (
                             <li>
-                                <Icon name={icon} />
+                                <Icon class="Icon" name={icon} />
                                 <span set:html={item} />
                             </li>
                         );
@@ -112,7 +112,11 @@ const listItems = [
                     padding: 8px 10px;
                     display: flex;
                     align-items: center;
-                    gap: 8px;
+                    gap: 8px;     
+                    
+                    .Icon {
+                        font-size: 20px;
+                    }
                 }
             }
 
