@@ -3,37 +3,74 @@ import { Icon } from "astro-icon/components";
 
 const horario = [
     {
-        dia: "Lunes",
-        horario: "07:00 AM - 06:00 PM"
+        dia: "Lunes - Sábado",
+        horario: "07:00 AM - 06:00 PM",
     },
-    {
-        dia: "Martes",
-        horario: "07:00 AM - 06:00 PM"
-    },
-    {
-        dia: "Miércoles",
-        horario: "07:00 AM - 06:00 PM"
-    },
-    {
-        dia: "Jueves",
-        horario: "07:00 AM - 06:00 PM"
-    },
-    {
-        dia: "Viernes",
-        horario: "07:00 AM - 06:00 PM"
-    },
-    {
-        dia: "Sábado",
-        horario: "07:00 AM - 06:00 PM"
-    },
+    // {
+    //     dia: "Martes",
+    //     horario: "07:00 AM - 06:00 PM",
+    // },
+    // {
+    //     dia: "Miércoles",
+    //     horario: "07:00 AM - 06:00 PM",
+    // },
+    // {
+    //     dia: "Jueves",
+    //     horario: "07:00 AM - 06:00 PM",
+    // },
+    // {
+    //     dia: "Viernes",
+    //     horario: "07:00 AM - 06:00 PM",
+    // },
+    // {
+    //     dia: "Sábado",
+    //     horario: "07:00 AM - 06:00 PM",
+    // },
     {
         dia: "Domingo",
-        horario: "Cerrado"
-    }
-]
+        horario: "Cerrado",
+    },
+];
+
+const listIcons: { icon: string; link: string }[] = [
+    {
+        icon: "mdi:youtube",
+        link: "#",
+    },
+    {
+        icon: "mdi:twitter",
+        link: "#",
+    },
+    {
+        icon: "fa-brands:linkedin",
+        link: "#",
+    },
+    {
+        icon: "fa-brands:facebook-f",
+        link: "#",
+    },
+    {
+        icon: "fa-brands:instagram",
+        link: "#",
+    },
+];
 ---
 
 <footer>
+    <div class="redes-sociales">
+        <span>¡Síguenos!</span>
+        <div class="icons-redes">
+            {
+                listIcons.map(({icon, link}) => {
+                    return (
+                        <a class="icon" href={link}>
+                            <Icon name={icon} />
+                        </a>
+                    );
+                })
+            }
+        </div>
+    </div>
     <section class="section-1">
         <h3>GRÚAS INDUSTRIALES</h3>
 
@@ -66,22 +103,26 @@ const horario = [
     </section>
     <section class="section-3">
         <h3>HORARIOS DE ATENCIÓN</h3>
-        
-        <p>Atención por correo electrónico las 24 horas del día. Y en nuestras oficinas en los siguientes horrios</p>
+
+        <p>
+            Atención por correo electrónico las 24 horas del día. Y en nuestras
+            oficinas en los siguientes horrios
+        </p>
 
         <ul>
             {
-                horario.map(({dia, horario}) => (
+                horario.map(({ dia, horario }) => (
                     <li>
                         <span>{dia}</span>
-                        <span>{horario}</span>
+                        <span>
+                            <b>{horario}</b>
+                        </span>
                     </li>
                 ))
             }
         </ul>
     </section>
 </footer>
-
 
 <style lang="scss">
     :root {
@@ -97,13 +138,70 @@ const horario = [
         font-family: sans-serif;
         padding: $padding-container;
         background-color: #000000;
-        color: #FFFFFF;
+        color: #ffffff;
         display: grid;
         grid-template-columns: 1fr;
         gap: 20px;
+        position: relative;
+        padding-top: 40px;
+        padding-bottom: 30px;
+
+        .redes-sociales {
+            background-color: var(--color-primary);
+            color: #000000;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            top: -15px;
+            gap: 10px;
+            height: 5px;
+            padding: 25px;
+            margin-left: 20px;
+            border-radius: 5px;
+            box-shadow: -2px -1px 5px 0px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: -1px -1px 5px 0px rgba(0, 0, 0, 0.75);
+
+            &::after {
+                content: "";
+                border-left: 9px solid #777;
+                border-top: 16px solid transparent;
+                position: absolute;
+                right: -9px;
+                top: 0;
+            }
+
+            span {
+                font-size: 13px;
+            }
+
+            .icons-redes {
+                display: flex;
+                gap: 10px;
+
+                .icon {
+                    color: #000000;
+                    font-size: 20px;
+                    border: 1px solid #000000;
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    padding: 4px 8px;
+                    text-decoration: none;
+                    line-height: 0;
+
+                    &:hover {
+                        border-color: #ffffff;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
 
         ul {
             list-style: none;
+            padding: 0px;
+            margin: 0px;
         }
 
         h3 {
@@ -112,15 +210,15 @@ const horario = [
 
         .section-1 {
             ul li {
-                padding: 5px 0px;
+                padding: 12px 0px;
             }
         }
 
         .section-2 {
             ul li {
-                padding: 20px 0px;
+                padding: 10px 0px;
 
-                &:first-child  {
+                &:first-child {
                     span:last-child {
                         display: block;
                         padding: 10px 0px;
@@ -137,7 +235,7 @@ const horario = [
                 display: flex;
                 justify-content: space-between;
                 padding: 10px 0px;
-                border-bottom: 1px solid rgba( #6f6e6e, .5);
+                border-bottom: 1px solid rgba(#6f6e6e, 0.5);
                 font-size: 14px;
             }
         }
@@ -146,6 +244,12 @@ const horario = [
     @media (min-width: 700px) {
         footer {
             grid-template-columns: 1fr 1fr;
+
+            .section-2 {
+                ul li {
+                    padding: 12px 0px;
+                }
+            }
         }
     }
 
