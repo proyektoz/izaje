@@ -1,0 +1,209 @@
+---
+import { Icon } from "astro-icon/components";
+
+const listItems = [
+    {
+        item: "<b>Tel:</b> 1212135455",
+        icon: "mdi:telephone",
+    },
+    {
+        item: "<b>Email:</b> ofertacomercialtierracoll@gmail.com",
+        icon: "mdi:email",
+    },
+    {
+        item: "Carrera 12 # 2 - 80 Tauramena - Casanare",
+        icon: "mdi:address-marker",
+    },
+    {
+        item: "Lunes a Viernes: <b>7:00 AM – 6:00 PM</b>",
+        icon: "mdi:clock-time-four",
+    },
+];
+---
+
+<section class="contacto">
+    <div class="secction-1">
+        <h1><b>¡Contáctanos y cotiza tu servicio de izaje!</b></h1>
+        <p>
+            Estamos listos para ayudarte con tus proyectos de izaje, transporte
+            y montaje de cargas. Nuestro equipo responderá en el menor tiempo
+            posible.
+        </p>
+
+        <div>
+            <ul>
+                {
+                    listItems.map(({ item, icon }) => {
+                        return (
+                            <li>
+                                <Icon name={icon} />
+                                <span set:html={item} />
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        </div>
+    </div>
+
+    <div class="secction-2">
+        <h1><b>¿Listo para elevar tu proyecto? Escríbenos</b></h1>
+        <form action="#">
+            <div class="formulario">
+                <div class="form-group">
+                    <label>Nombre completo</label>
+                    <input type="text" />
+                </div>
+                <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="email" />
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono (opcional)</label>
+                    <input type="number" />
+                </div>
+
+                <div class="form-group">
+                    <label>Asunto</label>
+                    <input type="text" />
+                </div>
+
+                <div class="form-group textarea">
+                    <label>Mensaje</label>
+                    <textarea></textarea>
+                </div>
+            </div>
+
+            <div class="btn-submit">
+                <button type="submit">Enviar mensaje</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style lang="scss">
+    :root {
+        --color-primary: #f3d421;
+        --color-secundary: #e1251b;
+        --color-success: #4bb347;
+        --color-name-company: #0f73b9;
+    }
+    $padding-container: 20px 20px;
+
+    .contacto {
+        font-family: Montserrat, sans-serif;
+        padding: $padding-container;
+        display: grid;
+        grid-template-columns: 1fr;
+        background-color: #ffffff;
+
+        h1 {
+            text-align: center;
+        }
+
+        .secction-1 {
+            ul {
+                list-style: none;
+                margin: 0px;
+                padding: 0px;
+
+                li {
+                    padding: 8px 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                }
+            }
+
+            p {
+                line-height: 25px;
+                text-align: center;
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+
+        .secction-2 {
+            form {
+                .form-group {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 15px;
+
+                    label {
+                        font-family: "Open Sans", sans-serif;
+                        font-weight: 400;
+                        display: inline-block;
+                        max-width: 100%;
+                        margin-bottom: 5px;
+                        line-height: 26px;
+                        font-size: 15px;
+                    }
+
+                    input,
+                    textarea {
+                        text-transform: uppercase;
+                        font-family: "Open Sans", sans-serif;
+                        box-shadow: none;
+                        height: 30px;
+                        color: rgb(149, 149, 149);
+                        font-size: 14px;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: rgb(218, 218, 218);
+                        border-image: initial;
+                        padding: 5px 20px;
+                        background: none;
+                        border-radius: 0px;
+                    }
+                    textarea {
+                        height: 70px;
+                    }
+                }
+
+                .btn-submit {
+                    text-align: right;
+
+                    button {
+                        background-color: var(--color-primary);
+                        color: #ffffff;
+                        border: 1px solid var(--color-primary);
+                        font-size: 20px;
+                        padding: 10px 15px;
+                        font-weight: bold;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 700px) {
+        .contacto {
+            // grid-template-columns: 1fr 1fr;
+            .secction-2 {
+                form {
+                    .formulario {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 15px;
+                        align-items: end;
+
+                        .textarea {
+                            grid-column: 1 / -1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media (min-width: 870px) {
+        .contacto {
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+    }
+</style>
